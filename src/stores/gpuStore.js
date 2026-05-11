@@ -1,13 +1,18 @@
 import { defineStore } from "pinia";
+import { fetchGpus } from "@/data/mockGpus";
 
 export const useGpuStore = defineStore("gpuStore", {
   state: () => ({
     gpuList: [],
-    gpuSelecionada: "",
+    gpuSelecionada: null,
+
   }),
   actions: {
-    selecionarGpu(){
-        "gpuSelecinada" = this.gpuSelecionada
+    selecionarGpu(gpuSelecionada){
+        this.gpuSelecionada = gpuSelecionada
+    },
+    async carregarGpus(){
+      this.gpuList = await fetchGpus()
     }
   },
 });
